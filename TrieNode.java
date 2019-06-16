@@ -6,11 +6,7 @@ public class TrieNode {
 	    boolean isEnd; 
 	    int count;  
 	    // children List
-	    // need to modify!
-	    // you can implement this with arrayList or LinkedList or array
 	    LinkedList<TrieNode> childrenList;
-	   // TrieNode[] childrenList;
-	
 
 	    
 	// Constructors
@@ -32,7 +28,6 @@ public class TrieNode {
     	 * 
     	 */
 
-	    
 	    public TrieNode getChild(char c){
 	    	   if(childrenList != null){
 	    	      for( TrieNode child : childrenList){
