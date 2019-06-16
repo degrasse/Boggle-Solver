@@ -26,9 +26,7 @@ public class BoggleSolver {
 	static ArrayList<Integer> x = new ArrayList<Integer>();
 	static ArrayList<Integer> y = new ArrayList<Integer>();
 	
-	
 
-	//isLeaf == isEnd
 /////////////////////////////////////////////////////////////////////////////////////	
 	  public BoggleSolver(int N, TrieTree t, char[][] gameBoard) {
 	        this.N  = N;
@@ -36,21 +34,15 @@ public class BoggleSolver {
 	        visited = new boolean[N][N];
 	        this.gameBoard = gameBoard;
 	  }
-	  
 
- 
 	  public void getWords() {
 		  
 	        for (int i = 0; i < N; i++){
 	            for (int j = 0; j < N; j++){
 	                search("", i, j);
-	               
-	        		//printpath(path, count);
-	                
-	        		
+
 	            }
-	        }
-	        	
+	        } 	
 	    }
 
 	    // run depth first search starting at cell (i, j)
@@ -66,25 +58,18 @@ public class BoggleSolver {
 	        visited[i][j] = true;
 	     
 	        // found a word
-	    	
-	        
-	       
 	        wrd = wrd + gameBoard[i][j];
 	        
-	      
 	        if (t.search(wrd) && wrd.length() > 3) 
 	        	
 	            //System.out.println(wrd);
 	        	if(!foundWords.contains(wrd)){
-	        		foundWords.add(wrd);
-	        		
-	        		
+	        		foundWords.add(wrd);	
 	        	}
 	        
 	        x.add(i);
     		y.add(j);
 	     
-
 	        // check neighbors
 	        for (int dx = -1; dx <= 1; dx++)
 	            for (int dy = -1; dy <= 1; dy++)
@@ -92,20 +77,15 @@ public class BoggleSolver {
 	                search(wrd, i + dx, j + dy);
 	        		
 	        visited[i][j] = false;
-	      
-	       
-
 }
 
-
-	
 ////////////////////////////////////////////////////////////////////////////////////
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		TrieTree t = new TrieTree();  
 		
 		// Step 1: Scan in the dictionary
-		// 			Save words into a Trie
+		// Save words into a Trie
 		File wordsEn = new File(args[0]);
 		Scanner dictScanner;
 		try {
@@ -123,13 +103,10 @@ public class BoggleSolver {
 		}
 
 		
-		// Step 2: Scan in the board
-		// DO NOT NEED TO MODIFY
+		// Scan in the board
 		// this scans the board and save it into 
 		// a 2-D array called gameBoard
 		// each line is saved into a String array
-		// 
-		
 		File board = new File(args[1]);
 		Scanner bScanner;
 		// A game board of 4 by 4
@@ -149,14 +126,11 @@ public class BoggleSolver {
 				for (int y = 0; y < 4; y++) {
 					gameBoard[x][y] = line[x].charAt(y);
 					System.out.print(gameBoard[x][y]);
-					
-					
+
 				}
-				System.out.println();
-				
+				System.out.println();	
 			}
-		
-			
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -165,43 +139,28 @@ public class BoggleSolver {
 		System.out.println();
 		
 		//System.out.println(t.search("approximately"));
-	
-		  BoggleSolver boggle = new BoggleSolver(N, t, gameBoard);
-	      //  System.out.println(boggle);
+		BoggleSolver boggle = new BoggleSolver(N, t, gameBoard);
+	       // System.out.println(boggle);
 	        boggle.getWords();
-	        
-	        
-	        
-	        
+		
 	        for( int i=0; i < foundWords.size(); i++){
 	        	System.out.println(foundWords.get(i));
-	        	
 	         	//print path 
 		    	//for each word in found words
-		    	
 		    		//for the length of the ith word in found words
 		    		System.out.println("path");
 		    		for (int n = 0; n < foundWords.get(i).length(); n++){
-		    			
 		    			System.out.println("[" + x.get(n) + "]" + "[" + y.get(n) + "]");
 		    			//x.remove(m);
 		    			//y.remove(m);
-		    		
 		    			}
 		    		
 		    		for(int m =0; m < foundWords.get(i).length(); m++){
 		    			x.remove(m);
 		    			y.remove(m);
 		    		}
-		    		
-		    		
-	        	
-	        	
+	
 	        }
 	        
-	   
-      
-
-
 	}
 }
